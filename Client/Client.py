@@ -21,13 +21,13 @@ class App():
         pass
 
     def sendMessage(self):
-        url = "http://192.168.1.193:5000"
+        url = "http://eldablo81.pythonanywhere.com/"
         text = self.message.get()
         value = {"Ip": self.ip, "Text": text}
         x = requests.post(url, data=value)
     
     def see_chat(self):
-        url = "http://192.168.1.193:5000/chat"
+        url = "http://eldablo81.pythonanywhere.com/chat"
         x = requests.get(url)
         text = tk.Label(self.root, text=x.text)
         text.grid(row=3, column=0)

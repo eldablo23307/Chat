@@ -25,7 +25,3 @@ def chat():
     current_chat = file.read()
     file.close()
     return f"current_chat"
-
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0")
