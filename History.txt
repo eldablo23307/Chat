@@ -1,3 +1,6 @@
-
-192.168.56.1: Ciao pietro
-192.168.56.1: Ciao Beppe
+192.168.56.1: ciao
+192.168.56.1: Ciao mondo
+192.168.56.1: ciao come stai?
+192.168.56.1: sto bene
+192.168.56.1: sei gay
+192.168.56.1: ambrogio gay
