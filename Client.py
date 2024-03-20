@@ -22,7 +22,7 @@ class App():
         pass
 
     def sendMessage(self):
-        url = "http://192.168.1.193:5000"
+        url = "https://eldablo81.pythonanywhere.com"
         text = self.message.get()
         user = self.user.get()
         value = {"user": user, "Text": text}

@@ -1,8 +1,10 @@
 from flask import Flask, request
-import requests
+import mysql.connector
 
 app = Flask(__name__)
-
+mydb = mysql.connector.connect(host="eldablo81.mysql.pythonanywhere-services.com", user="eldablo81", password="M0ttu2307")
+mycursor = mydb.cursor()
+mycursor.execute("CREATE TABLE messaggi (user VARCHAR(255), messagio VARCHAR(255))")
 all_user = []
 
 @app.route("/", methods=["GET", "POST"])
@@ -11,12 +13,10 @@ def home():
         user = request.form["user"]
         all_user.append(user)
         Message = request.form["Text"]
-        file = open("History.txt", "r")
-        backup = file.read()
-        file.close()
-        file = open("History.txt", "w")
-        file.write(f"{backup}\n{user}: {Message}")
-        file.close()
+        sql = "INSERT INTO messaggi (user, messagio) VALUES (%s, %s)"
+        val = (user, Message)
+        mycursor.execute(sql, val)
+        mydb.commit()
     return "hello"
 
 @app.route("/chat")
