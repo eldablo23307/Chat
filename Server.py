@@ -4,7 +4,7 @@ import mysql.connector
 app = Flask(__name__)
 mydb = mysql.connector.connect(host="eldablo81.mysql.pythonanywhere-services.com", user="eldablo81", password="M0ttu2307")
 mycursor = mydb.cursor()
-mycursor.execute("CREATE TABLE messaggi (user VARCHAR(255), messagio VARCHAR(255))")
+mycursor.execute("CREATE TABLE messaggi (user VARCHAR(255), messagio VARCHAR(255));")
 all_user = []
 
 @app.route("/", methods=["GET", "POST"])
@@ -13,7 +13,7 @@ def home():
         user = request.form["user"]
         all_user.append(user)
         Message = request.form["Text"]
-        sql = "INSERT INTO messaggi (user, messagio) VALUES (%s, %s)"
+        sql = "INSERT INTO messaggi (user, messagio) VALUES (%s, %s);"
         val = (user, Message)
         mycursor.execute(sql, val)
         mydb.commit()
