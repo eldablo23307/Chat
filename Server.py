@@ -3,19 +3,19 @@ import requests
 
 app = Flask(__name__)
 
-all_ip = []
+all_user = []
 
 @app.route("/", methods=["GET", "POST"])
 def home():
     if request.method == "POST":
-        Ip = request.form["Ip"]
-        all_ip.append(Ip)
+        user = request.form["user"]
+        all_user.append(user)
         Message = request.form["Text"]
         file = open("History.txt", "r")
         backup = file.read()
         file.close()
         file = open("History.txt", "w")
-        file.write(f"{backup}\n{Ip}: {Message}")
+        file.write(f"{backup}\n{user}: {Message}")
         file.close()
     return "hello"
 
@@ -24,4 +24,8 @@ def chat():
     file = open("History.txt", "r")
     current_chat = file.read()
     file.close()
-    return f"current_chat"
+    return current_chat
+
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0")
