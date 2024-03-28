@@ -1,4 +1,4 @@
-import requests, socket
+import requests
 import tkinter as tk
 
 class App():   
