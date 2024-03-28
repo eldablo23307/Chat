@@ -22,16 +22,22 @@ class App():
         pass
 
     def sendMessage(self):
-        url = "https://eldablo81.pythonanywhere.com"
+        url = "https://Software99.pythonanywhere.com"
         text = self.message.get()
         user = self.user.get()
         value = {"user": user, "Text": text}
         x = requests.post(url, data=value)
     
     def see_chat(self):
-        url = "http://192.168.1.193:5000/chat"
+        url = "https://Software99.pythonanywhere.com/chat"
         x = requests.get(url)
-        text = tk.Label(self.root, text=x.text)
+        message = x.text.replace("),", "\n")
+        message = message.replace("',", ":")
+        message = message.replace("(", "")
+        message = message.replace(")", "")
+        message = message.replace("[", "")
+        message = message.replace("]", "")        
+        text = tk.Label(self.root, text=message)
         text.grid(row=3, column=0)
 
 App()
