@@ -45,6 +45,5 @@ App()
 """
 TO-DO list
 - automate the text show
-- make it preattier
 - add a censur measur
 """
