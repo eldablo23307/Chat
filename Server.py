@@ -1,70 +1,10 @@
 from flask import Flask, request
 from Databasehandle import Write_In_DataBase, Return_From_DataBase
+from better_profanity import profanity
 
 
 app = Flask(__name__)
 all_user = []
-swear_words = [
-    "arse",
-    "arsehead",
-    "arsehole",
-    "ass",
-    "asshole",
-    "bastard",
-    "bitch",
-    "bloody",
-    "bollocks",
-    "brotherfucker",
-    "bugger",
-    "bullshit",
-    "child-fucker",
-    "cock",
-    "cocksucker",
-    "crap",
-    "cunt",
-    "cyka blyat",
-    "damn",
-    "damn it",
-    "dick",
-    "dickhead",
-    "dyke",
-    "fatherfucker",
-    "frigger",
-    "fuck",
-    "goddamn",
-    "godsdamn",
-    "hell",
-    "holy shit",
-    "horseshit",
-    "in shit",
-    "Jesus Christ",
-    "Jesus fuck",
-    "Jesus H. Christ",
-    "Jesus Harold Christ",
-    "Jesus, Mary and Joseph",
-    "Jesus wept",
-    "kike",
-    "motherfucker",
-    "nigga",
-    "nigra",
-    "pigfucker",
-    "piss",
-    "prick",
-    "pussy",
-    "shit",
-    "shit ass",
-    "shite",
-    "sisterfucker",
-    "slut",
-    "son of a whore",
-    "son of a bitch",
-    "spastic",
-    "sweet Jesus",
-    "turd",
-    "twat",
-    "wanker"
-]
-
 
 @app.route("/", methods=["GET", "POST"])
 def home():
@@ -72,10 +12,8 @@ def home():
         user = request.form["user"]
         all_user.append(user)
         Message = request.form["Text"]
-        hold = Message.split()
-        for i in hold:
-            if i in swear_words:
-                Message = Message.replace(i, "******")
+        Message = profanity.censor(Message)
+        
         Write_In_DataBase(user, Message)
 
     return "hello"
