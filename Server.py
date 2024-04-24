@@ -20,7 +20,10 @@ def home():
 
 @app.route("/chat")
 def chat():
-    return str(Return_From_DataBase()) # Convertire in stringa per la visualizzazione, modifica come preferisci
+    return str(Return_From_DataBase())
 
+@app.route("/check_loing")
+def login():
+    return "Hello"
 if __name__ == "__main__":
     app.run()
