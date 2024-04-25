@@ -40,14 +40,18 @@ class App():
 
     def sendMessage(self):
         url = "https://Software99.pythonanywhere.com"
+        #Get the username and the message and covert it to a dictionary
         text = self.message.get()
         user = self.user.get()
         value = {"user": user, "Text": text}
-        x = requests.post(url, data=value)
+        #Send the data to the url 
+        requests.post(url, data=value)
     
     def see_chat(self):
+        #Send a url request to the DB
         url = "https://Software99.pythonanywhere.com/chat"
         x = requests.get(url)
+        #Get the text and remove unecessary stuff
         message = x.text.replace("),", "\n")
         message = message.replace("',", ":")
         message = message.replace("(", "")
@@ -61,9 +65,10 @@ class App():
         url = "https://Software99.pythonanywhere.com/chat"
         x = requests.get(url)
         if x.status_code == 200:
+            #Remove every item on the page
             for widget in self.root.winfo_children():
                 widget.destroy()
-
+            #Start the Chat Page
             self.chat()
 
 App()
