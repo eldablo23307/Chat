@@ -1,5 +1,6 @@
 from flask import Flask, request
 from Databasehandle import Write_In_DataBase, Return_From_DataBase
+from LogginDB import check_db
 from better_profanity import profanity
 
 
@@ -22,8 +23,14 @@ def home():
 def chat():
     return str(Return_From_DataBase())
 
-@app.route("/check_loing")
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    return "Hello"
+    if request.method == "POST":
+        user = request.form["User"]
+        psswd = request.form["Psswd"]
+        return check_db(user, psswd)
+
+    return "login"
+
 if __name__ == "__main__":
     app.run()
