@@ -6,6 +6,7 @@ class App():
         self.root = ctk.CTk()
         ctk.set_appearance_mode("dark")
         self.root.geometry("500x300")
+        """
         self.root.title("Login")
         text = ctk.CTkLabel(self.root, text="Login")
         self.entry_user = ctk.CTkEntry(self.root)
@@ -19,10 +20,8 @@ class App():
         txt_psswd.grid(row=2, column=0)
         self.entry_psswd.grid(row=2, column=1)
         btn_send.grid(row=3, column=0)
-        self.root.mainloop()
-        pass
-
-    def chat(self):
+        """
+        
         self.root.title("Chat")
         self.message = ctk.CTkEntry(self.root)
         btn = ctk.CTkButton(self.root,text="Send text",command=self.sendMessage)
@@ -36,7 +35,8 @@ class App():
         btn.grid(row=1,column=0)
         btn2 = ctk.CTkButton(self.root, text="show chat", command=self.see_chat)
         btn2.grid(row=2, column=0)
-
+        self.root.mainloop()
+        pass
 
     def sendMessage(self):
         url = "https://Software99.pythonanywhere.com"
@@ -60,20 +60,22 @@ class App():
         message = message.replace("]", "")        
         text = ctk.CTkLabel(self.root, text=message)
         text.grid(row=3, column=0)
-
+    """
     def send_login(self):
         url = "https://Software99.pythonanywhere.com/login"
         user = self.entry_user.get()
         psswd = self.entry_psswd.get()
         value = {"User": user, "Psswd": psswd}
-        x = requests.post(url)
+        x = requests.post(url, data=value)
         print(x.status_code)
+        
         if x.status_code == 200:
             #Remove every item on the page
             for widget in self.root.winfo_children():
                 widget.destroy()
             #Start the Chat Page
             self.chat()
+        """
 
 App()
 
