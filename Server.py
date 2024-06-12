@@ -37,7 +37,6 @@ def login():
 def news():
     if request.method == "POST":
         email = request.form["email"]
-        email = list(email)
         Write_email(email)
         return "Email aggiunta con successo"
     return "Metodo non supportato"

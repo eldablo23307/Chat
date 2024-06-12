@@ -21,11 +21,16 @@ def Return_From_DataBase():
     return messages
 
 def Write_email(email):
-    mydb = mysql.connector.connect(host="Software99.mysql.pythonanywhere-services.com", user="Software99", password="M0ttu2307", database="Software99$User_info")
+    mydb = mysql.connector.connect(
+        host="Software99.mysql.pythonanywhere-services.com",
+        user="Software99",
+        password="M0ttu2307",
+        database="Software99$User_info"
+    )
     mycursor = mydb.cursor()
     mycursor.execute("CREATE TABLE IF NOT EXISTS mail (email VARCHAR(255));")
     sql = "INSERT INTO mail (email) VALUES (%s);"
-    val = (email)
+    val = (email,)  # Assicurati che val sia una tupla con una virgola finale
     mycursor.execute(sql, val)
     mydb.commit()
     mycursor.close()
