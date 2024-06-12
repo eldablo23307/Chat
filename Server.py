@@ -1,6 +1,5 @@
 from flask import Flask, request
-from Databasehandle import Write_In_DataBase, Return_From_DataBase
-from LogginDB import check_db
+from Databasehandle import Write_In_DataBase, Return_From_DataBase, Write_email
 from better_profanity import profanity
 
 
@@ -33,5 +32,15 @@ def login():
 
     return "login"
 """
+
+@app.route("/news", methods=["GET", "POST"])
+def news():
+    if request.method == "POST":
+        email = request.form["email"]
+        email = list(email)
+        Write_email(email)
+        return "Email aggiunta con successo"
+    return "Metodo non supportato"
+
 if __name__ == "__main__":
     app.run()
